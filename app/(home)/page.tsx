@@ -19,10 +19,11 @@ const toPlaceholder = (toCategory: string) => {
   switch (toCategory) {
     case 'bech32':
       return 'cosmosvaloper1gyv9dkmrc6fqvd6g9c06hf0ea3ecynwjrsw3vu'
-    case 'hex_address':
-      return 'd1BBCB0Bf7fcaa2a90EEfE2AE93cB3554349b8c3'
     case 'ethermint_bech32':
       return 'evmos16xaukzlhlj4z4y8wlc4wj09n24p5nwxrczqahs'
+    case 'cosmos_hex_address':
+    case 'eth_hex_address':
+      return 'd1BBCB0Bf7fcaa2a90EEfE2AE93cB3554349b8c3'
     default:
       return ''
   }
