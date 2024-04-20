@@ -1,0 +1,32 @@
+{
+  "name": "extended-bech32-converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "format": "prettier --check --ignore-path .gitignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore ."
+  },
+  "keywords": [],
+  "author": "chemoworld",
+  "license": "ISC",
+  "dependencies": {
+    "@keplr-wallet/cosmos": "^0.12.81",
+    "@keplr-wallet/crypto": "^0.12.81",
+    "autoprefixer": "^10.4.19",
+    "bech32": "^2.0.0",
+    "next": "^14.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@keplr-wallet/types": "^0.12.81",
+    "@types/node": "^20.12.7",
+    "@types/react": "18.2.79",
+    "postcss": "^8.4.38",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.3",
+    "typescript": "5.4.5"
+  }
+}
