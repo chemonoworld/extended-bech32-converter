@@ -127,6 +127,7 @@ export default function Homepage() {
 
   const handleCopyResult = () => {
     navigator.clipboard.writeText(to)
+    alert('Copied!')
   }
 
   const convert = async (
