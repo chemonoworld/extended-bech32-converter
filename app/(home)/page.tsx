@@ -50,7 +50,7 @@ const convertHexStringToUint8Array = (hexString: string) => {
   return bytes
 }
 
-function convertWordsToBytes(words: number[]): number[] {
+const convertWordsToBytes = (words: number[]): number[] => {
   let bytes = [] // 8비트 데이터를 저장할 배열
   let buffer = 0 // 현재 처리중인 비트를 저장할 버퍼
   let bitsInBuffer = 0 // 버퍼에 저장된 비트 수
@@ -69,24 +69,22 @@ function convertWordsToBytes(words: number[]): number[] {
   return bytes
 }
 
-/*
-function convertBytesToWords(bytes: number[]): number[] {
-    let words = [];
-    let buffer = 0;
-    let bitsInBuffer = 0;
+const convertBytesToWords = (bytes: number[]): number[] => {
+  let words = []
+  let buffer = 0
+  let bitsInBuffer = 0
 
-    bytes.forEach((value) => {
-        buffer = (buffer << 8) | value;
-        bitsInBuffer += 8;
+  bytes.forEach((value) => {
+    buffer = (buffer << 8) | value
+    bitsInBuffer += 8
 
-        while (bitsInBuffer >= 5) {
-            bitsInBuffer -= 5;
-            words.push((buffer >> bitsInBuffer) & 0x1F);
-        }
-    });
-    return words;
+    while (bitsInBuffer >= 5) {
+      bitsInBuffer -= 5
+      words.push((buffer >> bitsInBuffer) & 0x1f)
+    }
+  })
+  return words
 }
-*/
 
 const importFromKeplr = async (
   chainId: string,
@@ -103,6 +101,11 @@ const importFromKeplr = async (
     return await window.keplr
       .getKey(chainId)
       .then((key) => convertUint8ArrayToHexString(key.pubKey))
+  }
+  if (fromCategory === 'hex_address') {
+    return await window.keplr
+      .getKey(chainId)
+      .then((key) => convertUint8ArrayToHexString(key.address))
   }
   return ''
 }
@@ -169,6 +172,16 @@ export default function Homepage() {
           default:
             return ''
         }
+      case 'hex_address':
+        const words = convertBytesToWords(
+          Array.from(convertHexStringToUint8Array(from)),
+        )
+        switch (toCategory) {
+          case 'bech32':
+            return bech32.encode(toPrefix, words)
+          default:
+            return ''
+        }
       default:
         return ''
     }
@@ -215,6 +228,7 @@ export default function Homepage() {
               >
                 <option value="bech32">Bech32</option>
                 <option value="hex_pubkey">Hex Pubkey</option>
+                <option value="hex_address">Hex Address</option>
               </select>
             </div>
             <div className="ml-auto">
@@ -289,6 +303,11 @@ export default function Homepage() {
                       Cosmos Hex Address
                     </option>
                     <option value="eth_hex_address">Eth Hex Address</option>
+                  </>
+                )}
+                {fromCategory === 'hex_address' && (
+                  <>
+                    <option value="bech32">Bech32</option>
                   </>
                 )}
               </select>
