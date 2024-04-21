@@ -240,7 +240,7 @@ export default function Homepage() {
               />
               <button
                 id="btn-import-from-keplr"
-                className="text-sm p-2 rounded-md bg-slate-100"
+                className="text-sm p-2 rounded-md bg-slate-200"
                 onClick={handleClickImportFromKeplr}
               >
                 Import from Keplr
