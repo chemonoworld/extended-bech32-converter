@@ -126,7 +126,7 @@ export default function Homepage() {
     }
   }
 
-  const handleCopyResult = () => {
+  const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(to)
     alert('Copied!')
   }
@@ -240,7 +240,7 @@ export default function Homepage() {
               />
               <button
                 id="btn-import-from-keplr"
-                className="text-sm p-2 rounded-md bg-blue-100"
+                className="text-sm p-2 rounded-md bg-slate-100"
                 onClick={handleClickImportFromKeplr}
               >
                 Import from Keplr
@@ -306,10 +306,10 @@ export default function Homepage() {
           <div className="flex flex-col h-full p-2 border gap-2">
             <div className="flex flex-row gap-4 ml-auto">
               <button
-                className="text-sm p-2 rounded-md bg-blue-100"
-                onClick={handleCopyResult}
+                className="text-sm p-2 rounded-md bg-slate-200"
+                onClick={handleCopyToClipboard}
               >
-                Copy result
+                Copy to Clipboard
               </button>
             </div>
             <textarea
