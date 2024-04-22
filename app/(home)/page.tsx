@@ -347,7 +347,7 @@ export default function Homepage() {
           Made by{' '}
           <a
             className="text-blue-200 hover:text-purple-400"
-            href="https://github.com/chemonoworld"
+            href="https://github.com/chemonoworld/extended-bech32-converter"
           >
             chemonoworld
           </a>
