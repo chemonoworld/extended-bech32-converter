@@ -10,6 +10,8 @@ const fromPlaceholder = (fromCategory: string) => {
       return 'cosmos1gyv9dkmrc6fqvd6g9c06hf0ea3ecynwjxy6yq0'
     case 'hex_pubkey':
       return '1234567890abcdef1234567890abcdef12345678'
+    case 'hex_address':
+        return 'd1BBCB0Bf7fcaa2a90EEfE2AE93cB3554349b8c3'
     default:
       return ''
   }
