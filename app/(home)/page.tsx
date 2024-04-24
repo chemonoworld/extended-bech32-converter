@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { bech32 } from 'bech32'
 import { Bech32Address } from '@keplr-wallet/cosmos'
 import { PubKeySecp256k1 } from '@keplr-wallet/crypto'
@@ -11,7 +11,7 @@ const fromPlaceholder = (fromCategory: string) => {
     case 'hex_pubkey':
       return '1234567890abcdef1234567890abcdef12345678'
     case 'hex_address':
-        return 'd1BBCB0Bf7fcaa2a90EEfE2AE93cB3554349b8c3'
+      return 'd1BBCB0Bf7fcaa2a90EEfE2AE93cB3554349b8c3'
     default:
       return ''
   }
@@ -25,6 +25,8 @@ const toPlaceholder = (toCategory: string) => {
       return 'evmos16xaukzlhlj4z4y8wlc4wj09n24p5nwxrczqahs'
     case 'cosmos_hex_address':
     case 'eth_hex_address':
+      return 'd1BBCB0Bf7fcaa2a90EEfE2AE93cB3554349b8c3'
+    case 'hex_address':
       return 'd1BBCB0Bf7fcaa2a90EEfE2AE93cB3554349b8c3'
     default:
       return ''
@@ -120,6 +122,10 @@ export default function Homepage() {
   const [fromCategory, setFromCategory] = React.useState<string>('bech32')
   const [toCategory, setToCategory] = React.useState<string>('bech32')
   const [chainId, setChainId] = React.useState<string>('')
+
+  const fromPrefix = useMemo(() => {
+    return fromCategory === 'bech32' ? from.split('1')[0] : ''
+  }, [fromCategory, from])
 
   const handleClickImportFromKeplr = async () => {
     try {
@@ -239,7 +245,7 @@ export default function Homepage() {
                 className="w-1/2 text-md text-center font-medium"
                 type="text"
                 placeholder="cosmos"
-                value={from.split('1')[0]}
+                value={fromPrefix}
                 disabled={true}
               />
             </div>
