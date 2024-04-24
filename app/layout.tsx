@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
   description: 'Extended Bech32 Encoding/Decoding Online Tool',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon32.png',
   }
 }
 
