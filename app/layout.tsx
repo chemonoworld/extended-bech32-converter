@@ -11,7 +11,10 @@ export const metadata: Metadata = {
     template: '%s | Extended Bech32 Converter',
     default: 'Extended Bech32 Converter',
   },
-  description: 'Extended Bech32 Encoding and Decoding Online Tool',
+  description: 'Extended Bech32 Encoding/Decoding Online Tool',
+  icons: {
+    icon: '/favicon.ico',
+  }
 }
 
 export default function RootLayout({
