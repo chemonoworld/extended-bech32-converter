@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: 'Extended Bech32 Encoding/Decoding Online Tool',
   icons: {
     icon: '/favicon32.png',
-  }
+  },
 }
 
 export default function RootLayout({
