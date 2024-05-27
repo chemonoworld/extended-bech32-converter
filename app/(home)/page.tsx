@@ -114,6 +114,16 @@ const importFromKeplr = async (
   return ''
 }
 
+const importChainIdsFromKeplr = async (): Promise<string[]> => {
+  if (!window.keplr) {
+    alert('Please install keplr extension')
+    return []
+  }
+  return await window.keplr?.getChainInfosWithoutEndpoints().then(chainInfos => {
+    return chainInfos.map(chainInfo => chainInfo.chainId)
+  });
+}
+
 export default function Homepage() {
   const [from, setFrom] = React.useState<string>('')
   const [to, setTo] = React.useState<string>('')
@@ -121,6 +131,7 @@ export default function Homepage() {
   const [clickToggle, setClickToggle] = React.useState<boolean>(false)
   const [fromCategory, setFromCategory] = React.useState<string>('bech32')
   const [toCategory, setToCategory] = React.useState<string>('bech32')
+  const [chainIds, setChainIds] = React.useState<string[]>([])
   const [chainId, setChainId] = React.useState<string>('')
 
   const fromPrefix = useMemo(() => {
@@ -196,6 +207,10 @@ export default function Homepage() {
   }
 
   useEffect(() => {
+    importChainIdsFromKeplr().then((chainIds) => setChainIds(chainIds))
+  }, []);
+
+  useEffect(() => {
     if (from === '' && toPrefix === '') return
     const setConvertedAddress = async (
       from: string,
@@ -252,14 +267,18 @@ export default function Homepage() {
           </div>
           <div className="flex flex-col h-full p-2 border gap-2">
             <div className="flex flex-row gap-4 ml-auto">
-              <input
-                id="input-chain-id"
-                className="text-sm border-2 px-2 min-w-1/2"
-                type="text"
-                placeholder="chain_id(ex. osmosis-1)"
+              <select
+                id="select-chain-id"
+                className="text-sm border-2 px-2"
                 onChange={(e) => setChainId(e.target.value)}
-                value={chainId}
-              />
+              >
+                {chainIds.map((chainId) => (
+                  <option key={chainId} value={chainId}>
+                    {chainId}
+                  </option>
+                ))}
+              </select>
+
               <button
                 id="btn-import-from-keplr"
                 className="text-sm p-2 rounded-md bg-slate-200"
@@ -300,7 +319,7 @@ export default function Homepage() {
                 {fromCategory === 'bech32' && (
                   <>
                     <option value="bech32">Bech32</option>
-                    <option value="hex_address">Hex_Address</option>
+                    <option value="hex_address">Hex Address</option>
                   </>
                 )}
                 {fromCategory === 'hex_pubkey' && (
