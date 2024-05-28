@@ -207,7 +207,7 @@ export default function Homepage() {
   }
 
   useEffect(() => {
-    importChainIdsFromKeplr().then((chainIds) => setChainIds(chainIds))
+    importChainIdsFromKeplr().then((chainIds) => setChainIds(['SELECT CHAIN ID', ...chainIds]))
   }, []);
 
   useEffect(() => {
