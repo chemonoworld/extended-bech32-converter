@@ -96,6 +96,7 @@ const importFromKeplr = async (
 ): Promise<string> => {
   if (!window.keplr) {
     alert('Please install keplr extension')
+    window.open("https://www.keplr.app/download", '_blank')
     return ''
   }
   if (fromCategory === 'bech32') {
@@ -116,8 +117,7 @@ const importFromKeplr = async (
 
 const importChainIdsFromKeplr = async (): Promise<string[]> => {
   if (!window.keplr) {
-    alert('Please install keplr extension')
-    return []
+    return ["SELECT CHAIN ID"]
   }
   return await window.keplr?.getChainInfosWithoutEndpoints().then(chainInfos => {
     return chainInfos.map(chainInfo => chainInfo.chainId)
