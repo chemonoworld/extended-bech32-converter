@@ -9,9 +9,9 @@ declare global {
 export const metadata: Metadata = {
   title: {
     template: '%s | Extended Bech32 Converter',
-    default: 'Extended Bech32 Converter',
+    default: 'Extended Bech32 Converter | Online Tool',
   },
-  description: 'Extended Bech32 Encoding/Decoding Online Tool',
+  description: 'Extended Bech32 Online Tool(Encoder/Decoder/Converter) To convert Bech32 addresses to different formats and vice versa. Supports major cryptocurrencies.',
   icons: {
     icon: '/favicon32.png',
   },
